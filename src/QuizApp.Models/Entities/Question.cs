@@ -1,8 +1,9 @@
-﻿namespace QuizApp.Models.Entities
+﻿using QuizApp.Models.Common;
+
+namespace QuizApp.Models.Entities
 {
-    public class Question
+    public class Question : BaseEntity<Guid>
     {
-        public Guid Id { get; set; }
         public string Text { get; set; }
         public Guid QuestionSetId { get; set; }
     }
