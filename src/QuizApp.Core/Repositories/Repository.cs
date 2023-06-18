@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using QuizApp.Core.Extensions;
 using System.Linq.Expressions;
 
 namespace QuizApp.Core.Repositories
@@ -23,9 +24,22 @@ namespace QuizApp.Core.Repositories
             return entity;
         }
 
-        public T Edit(T entity, EntityEntry<T> rules = null)
+        public T Edit(T entity, Action<EntityEntry<T>> rules = null)
         {
-            throw new NotImplementedException();
+            var entry = _dbContext.Entry(entity);
+            if (rules == null)
+                goto summary;
+
+            foreach (var propertyInfo in typeof(T).GetProperties().Where(m => m.IsEditAble()))
+            {
+                entry.Property(propertyInfo.Name).IsModified = false;
+            }
+
+            rules(entry);
+
+            summary:
+            entry.State = EntityState.Modified;
+            return entity;
         }
 
         public IQueryable<T> GetAll(Expression<Func<T, bool>> expression = null)
