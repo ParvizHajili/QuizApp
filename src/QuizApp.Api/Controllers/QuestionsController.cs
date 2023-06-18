@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using QuizApp.Core.Extensions;
-using QuizApp.Core.Repositories;
 using QuizApp.Core.Services;
 using QuizApp.Models.DTOs.Questions.Create;
-using QuizApp.Models.Entities;
+using QuizApp.Models.DTOs.Questions.Save;
+using QuizApp.Models.DTOs.Questions.SaveAnswer;
 
 namespace QuizApp.Api.Controllers
 {
@@ -12,17 +11,33 @@ namespace QuizApp.Api.Controllers
     public class QuestionsController : ControllerBase
     {
         private readonly IQuestionService _questionService;
-        private readonly Repository<Question> _repository;
-        public QuestionsController(IQuestionService questionService,Repository<Question> repository)
+        public QuestionsController(IQuestionService questionService)
         {
             _questionService = questionService;
-            _repository = repository;
         }
 
-        [HttpGet]
+        [HttpPost]
         public IActionResult Create(QuestionCreateDto request)
         {
-            var response =_questionService.Create(request);
+            var response = _questionService.Create(request);
+
+            return Ok(response);
+        }
+
+
+        [HttpPost("{save}")]
+        public IActionResult Save(QuestionSaveDto request)
+        {
+            _questionService.Save(request);
+
+            return NoContent();
+        }
+
+
+        [HttpPost("{save-answer}")]
+        public IActionResult SaveAnswer(QuestionSaveAnswerDto request)
+        {
+            var response = _questionService.SaveAnswer(request);
 
             return Ok(response);
         }
@@ -35,15 +50,18 @@ namespace QuizApp.Api.Controllers
             return Ok(response);
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult ChangeQuestion(Guid id,string text)
+        [HttpDelete("{id}")]
+        public IActionResult Remove(Guid id)
         {
-            var entity = _repository.GetFirst(x => x.Id == id);
+            _questionService.Remove(id);
 
-            _repository.Edit(entity, entry =>
-            {
-                entry.SetValue(x => x.Text, text);
-            });
+            return NoContent();
+        }
+
+        [HttpDelete("remove-answer/{id}")]
+        public IActionResult RemoveAnswer(Guid id)
+        {
+            _questionService.RemoveAnswer(id);
 
             return NoContent();
         }
