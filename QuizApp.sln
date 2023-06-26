@@ -15,11 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{0B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{6513152B-15FF-4AD8-B9BC-DA1BAC7AF9BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Core", "src\QuizApp.Core\QuizApp.Core.csproj", "{C06EADA1-DE17-4AE1-BF9F-FD779ABA3B94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.Core", "src\QuizApp.Core\QuizApp.Core.csproj", "{C06EADA1-DE17-4AE1-BF9F-FD779ABA3B94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Models", "src\QuizApp.Models\QuizApp.Models.csproj", "{1966F72F-79C8-4918-A00C-6EEB3BB6ADA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.Models", "src\QuizApp.Models\QuizApp.Models.csproj", "{1966F72F-79C8-4918-A00C-6EEB3BB6ADA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Api", "src\QuizApp.Api\QuizApp.Api.csproj", "{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp.Api", "src\QuizApp.Api\QuizApp.Api.csproj", "{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizApp.Application", "src\QuizApp.Application\QuizApp.Application.csproj", "{E76B939E-DDEA-463D-8E32-56DC8D28C006}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E76B939E-DDEA-463D-8E32-56DC8D28C006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E76B939E-DDEA-463D-8E32-56DC8D28C006}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E76B939E-DDEA-463D-8E32-56DC8D28C006}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E76B939E-DDEA-463D-8E32-56DC8D28C006}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{C06EADA1-DE17-4AE1-BF9F-FD779ABA3B94} = {1DC20084-F815-48C0-B7F5-DC73EFF1B6F3}
 		{1966F72F-79C8-4918-A00C-6EEB3BB6ADA3} = {1DC20084-F815-48C0-B7F5-DC73EFF1B6F3}
 		{9832D8E8-F58C-48C4-BCF0-8A4E761D8E64} = {6513152B-15FF-4AD8-B9BC-DA1BAC7AF9BA}
+		{E76B939E-DDEA-463D-8E32-56DC8D28C006} = {0BC9388C-30B6-49E8-93B4-2CEABA81F105}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {579B6C82-CCC1-4D52-AD77-F649F8384B79}
