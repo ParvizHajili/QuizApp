@@ -1,3 +1,6 @@
+using Newtonsoft.Json.Serialization;
+using QuizApp.Api.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,10 +19,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.AddGlobalErrorHandling();
 
 app.Run();

@@ -64,22 +64,23 @@ namespace QuizApp.Application.Services
                 .SetValue(x => x.QuestionSetId, request.QuestionSetId);
             });
 
-            var correctAnswer = _answerRepository.GetFirst(x => x.Id == request.CorrectAnswerId);
-
-            _answerRepository.Edit(correctAnswer, entry => entry.SetValue(x => x.IsCorrect, true));
-
-            var otherAnswers = _answerRepository.GetAll(x => x.QuestionId == request.QuestionSetId && x.Id != request.CorrectAnswerId).ToArray();
-
-            foreach (var item in otherAnswers)
+            var correctAnswer = _answerRepository.GetFirst(x => x.Id == request.CorrectAnswerId, false);
+            if (correctAnswer != null)
             {
-                _answerRepository.Edit(item, entry => entry.SetValue(x => x.IsCorrect, false));
+                _answerRepository.Edit(correctAnswer, entry => entry.SetValue(x => x.IsCorrect, true));
+
+                var otherAnswers = _answerRepository.GetAll(x => x.QuestionId == request.QuestionSetId && x.Id != request.CorrectAnswerId).ToArray();
+
+                foreach (var item in otherAnswers)
+                {
+                    _answerRepository.Edit(item, entry => entry.SetValue(x => x.IsCorrect, false));
+                }
             }
         }
 
         public QuestionSaveAnswerResponseDto SaveAnswer(QuestionSaveAnswerDto request)
         {
-            //todo
-            var answer = _answerRepository.GetFirst(x => x.Id == request.Id);
+            var answer = _answerRepository.GetFirst(x => x.Id == request.Id, false);
 
             if (answer == null)
             {

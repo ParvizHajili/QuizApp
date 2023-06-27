@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using QuizApp.Core.Exceptions;
 using QuizApp.Core.Extensions;
 using System.Linq.Expressions;
 
@@ -52,14 +53,21 @@ namespace QuizApp.Core.Repositories
             return query;
         }
 
-        public T GetFirst(Expression<Func<T, bool>> expression)
+        public T GetFirst(Expression<Func<T, bool>> expression, bool throwException = true)
         {
             var query = _table.AsQueryable();
 
             if (expression != null)
                 query = query.Where(expression);
 
-            return query.FirstOrDefault();
+            var entity = query.FirstOrDefault();
+
+            if (entity == null && throwException)
+            {
+                throw new NotfoundException("Məlumat Tapılmadı");
+            }
+
+            return entity;
         }
 
         public void Remove(T entity)
